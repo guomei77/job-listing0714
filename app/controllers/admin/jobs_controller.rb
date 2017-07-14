@@ -21,7 +21,7 @@ class Admin::JobsController < ApplicationController
     def create
       @job = Job.new(job_params)
       if @job.save
-        redirect_to jobs_path
+        redirect_to admin_jobs_path
       else
         render :new
       end
@@ -30,7 +30,7 @@ class Admin::JobsController < ApplicationController
     def update
       @job = Job.find(params[:id])
       if @job.update(job_params)
-        redirect_to jobs_path
+        redirect_to admin_jobs_path
       else
         render :edit
       end
@@ -41,7 +41,21 @@ class Admin::JobsController < ApplicationController
       @job.destroy
       redirect_to jobs_path
     end
+    def publish
+      @job = Job.find(params[:id])
+      #@job.is_hidden = false
+      #@job.save
+      @job.publish!
 
+      redirect_to admin_jobs_path
+    end
+    def hide
+      @job = Job.find(params[:id])
+      #@job.is_hidden = false
+      #@job.save
+      @job.hide!
+      redirect_to admin_jobs_path
+    end
 
     private
     def job_params
