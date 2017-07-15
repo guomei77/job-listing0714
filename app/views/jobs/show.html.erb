@@ -1,5 +1,5 @@
 <h1><%= @job.title %></h1>
 <p><%= simple_format(@job.description)%></p>
 <div class="text-center">
-  <%= link_to("提交简历","#", :class => "btn btn-lg btn-danger")%>
+  <%= link_to("提交简历", new_job_resume_path(@job), :class => "btn btn-lg btn-danger")%>
 </div>
