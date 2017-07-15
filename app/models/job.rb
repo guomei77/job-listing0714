@@ -11,4 +11,6 @@ validates :wage_lower_bound, presence:true, numericality: {greater_than: 0}
     self.is_hidden = true
     self.save
   end
+
+  scope :published, -> {where(is_hidden: false)}
 end
